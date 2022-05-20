@@ -1,55 +1,59 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-navigation-drawer app>
+      <!-- -->
+    </v-navigation-drawer>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+    <v-app-bar app>
+      <!-- -->
     </v-app-bar>
 
+    <!-- 根据应用组件来调整你的内容 -->
     <v-main>
-      <router-view/>
+      <!-- 给应用提供合适的间距 -->
+      <v-container fluid>
+        <!-- 如果使用 vue-router -->
+        <div :class="{ dark: themeColor }">
+          <router-view />
+        </div>
+      </v-container>
     </v-main>
+
+    <v-footer app>
+      <!-- -->
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-
+import { mapMutations, mapState } from "vuex";
 export default {
-  name: 'App',
-
+  name: "App",
+  computed: {
+    ...mapState(["themeColor"]),
+  },
   data: () => ({
     //
   }),
 };
 </script>
+<style lang="scss" >
+#app {
+  --theme-dark-bg: rgb(14, 0, 0);
+  --theme-dark-text: rgb(14, 0, 0);
+  --theme-light-bg: rgb(248, 243, 243);
+  --theme-light-text: rgb(248, 243, 243);
+}
+.dark {
+  transition: all 0.5s ease;
+  background-color: black;
+  color: white;
+  height: 100%;
+}
+.light {
+  transition: all 0.5s ease;
+  background-color: white;
+  color: black;
+  height: 100%;
+}
+</style>
